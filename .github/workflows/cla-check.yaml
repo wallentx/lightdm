@@ -2,6 +2,14 @@ name: cla-check
 on: [pull_request_target]
 
 jobs:
+  capture-payload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Catch Payload
+        shell: bash
+        run: |
+          jq '.' "$GITHUB_EVENT_PATH"
+          env | sort
   cla-check:
     runs-on: ubuntu-latest
     steps:

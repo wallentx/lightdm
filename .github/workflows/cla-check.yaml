@@ -5,11 +5,5 @@ jobs:
   cla-check:
     runs-on: ubuntu-latest
     steps:
-      - name: Catch Payload
-        if: runner.debug == '1'
-        shell: bash
-        run: |
-          jq '.' "$GITHUB_EVENT_PATH"
-          env | sort
       - name: Check if CLA signed
         uses: canonical/has-signed-canonical-cla@v1

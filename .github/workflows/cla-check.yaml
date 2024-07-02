@@ -2,14 +2,16 @@ name: cla-check
 on: [pull_request_target]
 
 jobs:
-  cla-check:
+  capture-payload:
     runs-on: ubuntu-latest
     steps:
       - name: Catch Payload
-        if: runner.debug == '1'
         shell: bash
         run: |
           jq '.' "$GITHUB_EVENT_PATH"
           env | sort
+  cla-check:
+    runs-on: ubuntu-latest
+    steps:
       - name: Check if CLA signed
         uses: canonical/has-signed-canonical-cla@v1
